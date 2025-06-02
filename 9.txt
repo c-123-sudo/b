@@ -1,0 +1,40 @@
+*a)* UDP
+
+*b)*
+
+* Destination port (query): 53
+* Source port (response): Ephemeral port used by client
+
+*c)*
+
+* Sent to: *DNS server IP (from system settings, e.g., via nmcli)*
+* Compare to local DNS server IP to see if they match
+
+*d)*
+
+* Type: A (host address)
+* Answers: No (query does not contain answers)
+
+*e)*
+
+* Number of answers: Varies; example includes multiple IPs
+* Each answer contains an IP address corresponding to the domain
+
+*f)*
+
+* Yes, the SYN packet’s destination IP matches one of the DNS response IPs
+* Example: 209.173.57.180
+
+*g)* No
+
+*h)* Sent to local DNS server IP; check if it matches system default
+
+*i)*
+
+* Type: NS (nameserver)
+* Answers: No (in query message)
+
+*j)*
+
+* MIT name servers listed (e.g., use nslookup -type=NS mit.edu)
+* May or may not include IP addresses of those name servers
