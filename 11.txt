@@ -1,0 +1,23 @@
+*a)* Your computer's IP address — (Found in the packet details, varies per user)
+
+*b)* 1
+
+*c)* IP header: 20 bytes
+Payload: Total length − 20 bytes
+
+*d)* No, unless indicated by More Fragments flag or Fragment Offset
+
+*e)* Identification, Time to Live, Header checksum
+
+*f)* Version, Header length, Source IP, Destination IP, Differentiated Services, Upper Layer Protocol
+
+*g)* Yes
+
+*h)* More Fragments flag is set, Fragment Offset = 0 → First fragment
+Length: 1480 bytes or more
+
+*i)* Fragment Offset = 1480, More Fragments flag = 0 → Last fragment
+Changed fields: Fragment Offset, Total Length, Header Checksum
+9. The fragment offset field is greater than 0
+Frame 66. Payload  1480-2007 (528 bytes)
+10. We can tell that this is not the first fragment, since the fragment offset is 1480. It is the last fragment, since the more fragments flag is not set.
