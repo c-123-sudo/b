@@ -1,0 +1,53 @@
+*a)* HTTP/1.1 (both browser and server)
+
+*b)* Depends on browser config, typically: en-US,en;q=0.5
+
+*c)* 200 OK
+
+*d)* *Date provided in the Last-Modified header, e.g.*, Wed, 20 Oct 2021 10:00:00 GMT
+
+*e)* *Number of bytes as specified in Content-Length header*, e.g., 128 bytes
+
+---
+
+### *Part A: Conditional GET/response interaction*
+
+*f)* NO
+
+*g)* YES
+
+*h)* YES – contains If-Modified-Since: <timestamp>
+
+*i)* 304 Not Modified, NO (server did not return file contents)
+
+---
+
+### *Part B: Retrieving Long Documents*
+
+*a)* 1
+
+*b)* 2
+
+*c)* 304 Not Modified
+
+---
+
+### *Part B: HTML Documents with Embedded Objects*
+
+*d)* 3 GET requests
+
+* Sent to:
+
+  * gaia.cs.umass.edu
+  * www.aw-bc.com
+  * manic.cs.umass.edu
+
+*e)* Serial
+
+---
+
+### *Part B: HTTP Authentication*
+
+*f)* 401 Unauthorized
+
+*g)* New field: Authorization: Basic <credentials>
