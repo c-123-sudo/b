@@ -1,14 +1,27 @@
 #include <stdio.h> 
 int max(int a, int b) { return a > b ? a : b; } 
-int main() { 
-  int w[] = {3, 5, 6, 2}, v[] = {10, 4, 9, 11}, n = 4, W = 7; 
-  int dp[n+1][W+1]; 
-  for (int i = 0; i <= n; i++) 
-    for (int j = 0; j <= W; j++) 
-      if (i == 0 || j == 0) dp[i][j] = 0; 
-      else if (w[i-1] <= j) 
-        dp[i][j] = max(v[i-1] + dp[i-1][j - w[i-1]], dp[i-1][j]); 
-      else dp[i][j] = dp[i-1][j]; 
-  printf("Max value: %d\n", dp[n][W]); 
+ 
+// Finds last non-conflic ng job 
+int latestNonConflict(int s[], int e[], int i) { 
+  for (int j = i - 1; j >= 0; j--) 
+    if (e[j] <= s[i]) return j; 
+  return -1; 
 } 
  
+int main() { 
+  int n = 6; 
+  int s[] = {1,2,3,4,5,6}; 
+  int e[] = {2,5,6,8,9,10}; 
+  int v[] = {100,200,300,400,500,100}; 
+  int dp[n]; 
+  dp[0] = v[0]; 
+ 
+  for (int i = 1; i < n; i++) { 
+    int incl = v[i]; 
+    int l = latestNonConflict(s, e, i); 
+    if (l != -1) incl += dp[l]; 
+    dp[i] = max(incl, dp[i-1]); 
+  } 
+ 
+  prin ("Max profit: %d\n", dp[n-1]); 
+}
