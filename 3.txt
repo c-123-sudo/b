@@ -1,22 +1,14 @@
 #include <stdio.h> 
+int max(int a, int b) { return a > b ? a : b; } 
 int main() { 
-    int in, out, cap, n, buf = 0; 
-    printf("Enter bucket capacity, outgoing rate, no of inputs: "); 
-    scanf("%d%d%d", &cap, &out, &n); 
-    while (n--) { 
-        printf("Enter incoming packets: "); 
-        scanf("%d", &in); 
-        int sent = in < out ? in : out; 
-        if (in - out <= cap - buf) { 
-            if (sent < out && buf) 
-                sent += buf < out - sent ? buf : out - sent, buf -= sent - in; 
-            printf("%d packets sent\n", sent); 
-            buf += in > out ? in - out : 0; 
-        } else { 
-            printf("%d packets dropped\n", in - out - (cap - buf)); 
-            buf = cap; 
-        } 
-        printf("Buffer: %d/%d\n", buf, cap); 
-    } 
-    return 0; 
+  int w[] = {3, 5, 6, 2}, v[] = {10, 4, 9, 11}, n = 4, W = 7; 
+  int dp[n+1][W+1]; 
+  for (int i = 0; i <= n; i++) 
+    for (int j = 0; j <= W; j++) 
+      if (i == 0 || j == 0) dp[i][j] = 0; 
+      else if (w[i-1] <= j) 
+        dp[i][j] = max(v[i-1] + dp[i-1][j - w[i-1]], dp[i-1][j]); 
+      else dp[i][j] = dp[i-1][j]; 
+  printf("Max value: %d\n", dp[n][W]); 
 } 
+ 
